@@ -1,5 +1,6 @@
 const express = require("express");
 const db = require("./utils/db-connection");
+const playerRouter = require("./routes/playerRoutes");
 const app = express();
 
 
@@ -7,6 +8,13 @@ const app = express();
 
 const playermodel = require("./models/player");
 
+
+app.use(express.json());
+
+
+
+
+app.use("/player",playerRouter)
 app.get("/",(req,res)=>{
     res.send("hello from server");
 })
