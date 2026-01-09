@@ -39,8 +39,32 @@ const updateEntries = async(req,res)=>{
     }
 }
 
+
+const deleteEntries = async(req,res)=>{
+
+    try{
+        const {id} = req.params;
+
+    const player = Player.destroy({
+        where:{
+            id:id
+        }
+    })
+
+    if(!player){
+        return res.status(404).send("user not found");
+    }
+    res.status(200).send("user delete");
+    }catch(error){
+        console.log(error);
+        res.status(500).send("user not deleted");
+    }
+    
+}
+
 module.exports = {
     addEntries,
-    updateEntries
+    updateEntries,
+    deleteEntries
 }
    
